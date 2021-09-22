@@ -1,0 +1,67 @@
+# This is a sample Python script.
+
+
+# import re
+# text = "11/27/2021"
+# if re.match(r'\d+/\d+/\d+', text):
+#     print('Yes')
+# else:
+#     print('no')
+#
+# text = "Today is 11/27/2021 python start on 3/13/2021"
+# if re.match(r'\d+/\d+/\d+', text):
+#     print()
+
+# def outer(f):
+#     def inner():
+#         result=f()
+#         return result**2
+#     return inner
+#
+# @outer
+# def num():
+#     return 5
+# print(num())
+
+
+
+# def outer(func):
+#     print("In outer1")
+#     def inner(n1,n2):
+#         print("In inner1")
+#         result=func(n1,n2)
+#         print("In Inner2")
+#         return result**2
+#     print("In Outer2")
+#     return inner
+# @outer
+# def num(n1,n2):
+#     print("In num")
+#     return n1+n2+5
+# # num = outer(num)
+#
+# print(num(5,4))
+
+
+#passing arguments to decorator
+
+def decorator_with_args(decorator_args1, decorator_args2, decorator_args3):
+    def decorator(func):
+        def wrapper(function_args1,function_args2,function_args3):
+            print("The wrapper can access all the variables\n"
+                  "\t from the decorator maker: {0}{1}{2}\n"
+                  "\t from the function call : {0}{1}{2}\n"
+                  " and pass them into decorator function".format(decorator_args1,decorator_args2,decorator_args3,
+                                                                  function_args1,function_args2,function_args3))
+            return func(function_args1,function_args2,function_args3)
+        return wrapper
+    return decorator
+
+pandas = "pandas"
+@decorator_with_args(pandas,"numpy", "Scikit")
+def actual_function(function_args1,function_args2,function_args3):
+    print("This is decorated function and it inly knows about it's args {0}{1}{2}".format(function_args1,
+                                                                                         function_args2,
+                                                                                         function_args3))
+
+actual_function(" john", " science", " tool")
